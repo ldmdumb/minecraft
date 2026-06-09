@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft: Java & Bedrock</title>
+    <link rel="stylesheet" href="./css/0_index.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Minecraftia', monospace, sans-serif;
+        }
+        
+        body {
+            background-color: black;
+            color: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            padding-top: 85px;
+        }
+        
+        .purchase-section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .game-showcase {
+            width: 100%;
+            max-width: 650px;
+            flex: 1;
+            min-width: 300px;
+            background-color: #121212;
+            overflow: hidden;
+        }
+        
+        .game-image {
+            width: 100%;
+            height: auto;
+        }
+        
+        .game-title {
+            padding: 20px;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-family: 'Minecraft', sans-serif;
+        }
+        
+        .rating {
+            padding: 0 20px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .stars {
+            color: gold;
+            font-size: 24px;
+        }
+        
+        .age-rating {
+            background-color: #333;
+            padding: 5px 10px;
+            margin-left: 10px;
+        }
+        
+        .purchase-options {
+            width: 100%;
+            max-width: 450px;
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .edition {
+            background-color: #222;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .edition:hover {
+            transform: translateY(-3px);
+        }
+        
+        .best-value {
+            background-color: #61dafb;
+            color: black;
+            text-align: center;
+            padding: 5px;
+            font-weight: bold;
+        }
+        
+        .edition-content {
+            padding: 20px;
+        }
+        
+        .edition-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-family: 'Minecraft', sans-serif;
+            margin-bottom: 10px;
+        }
+        
+        .edition-details {
+            margin-bottom: 15px;
+        }
+        
+        .edition-details div {
+            margin-bottom: 10px;
+        }
+        
+        .edition-divider {
+            height: 1px;
+            background-color: #444;
+            margin: 15px 0;
+        }
+        
+        .price-section {
+            display: flex;
+            align-items: center;
+        }
+        
+        .price-circle {
+            width: 24px;
+            height: 24px;
+            border: 2px solid white;
+            border-radius: 50%;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .price-circle:hover {
+            background-color: rgba(124, 179, 66, 0.3);
+        }
+        
+        .selected {
+            background-color: #7cb342;
+        }
+        
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .game-pass {
+            background-color: white;
+            color: black;
+            padding: 2px 6px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 3px;
+            margin-left: auto;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .gift-btn, .checkout-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            border-radius: 3px;
+        }
+        
+        .gift-btn {
+            background-color: #333;
+            color: white;
+            border: 2px solid #555;
+            border-bottom: 4px solid #222;
+        }
+        
+        .checkout-btn {
+            background-color: #7cb342;
+            color: white;
+            border: none;
+            border-bottom: 4px solid #5a8230;
+        }
+        
+        .gift-btn:hover, .checkout-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gift-btn:active, .checkout-btn:active {
+            transform: translateY(1px);
+            border-bottom-width: 2px;
+        }
+        
+        .other-platforms-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-family: 'Minecraft', sans-serif;
+            margin: 40px 0 20px;
+            padding-top: 50px;
+        }
+        
+        .other-platforms-list {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding-bottom: 50px;
+        }
+        
+        .other-platform {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-width: 150px;
+            min-height: 80px;
+            padding: 10px 15px;
+            width: calc(20% - 12px);
+        }
+        
+        .other-platform:hover {
+            color: chartreuse;
+        }
+        
+        .platform-logo {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+        
+        .platform-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .platform-name {
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+        
+        .arrow {
+            font-size: 1.2rem;
+        }
+        
+        /* Media Queries for Responsiveness */
+        @media screen and (max-width: 768px) {
+            .purchase-section {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .game-showcase, .purchase-options {
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .buttons {
+                flex-direction: column;
+            }
+            
+            .playable-on {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+                padding-left: 20px;
+            }
+            
+            .other-platforms-list {
+                justify-content: flex-start;
+            }
+            
+            .other-platform {
+                width: calc(50% - 10px);
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .game-title {
+                font-size: 1.8rem;
+            }
+            
+            .rating {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .other-platform {
+                width: 100%;
+            }
+            
+            .edition-title {
+                font-size: 1.4rem;
+            }
+            
+            .edition-details div {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Thanh điều hướng -->
+<nav class="navbar">
+    <a href="./index.html">
+        <img src="./assets/img/MCCB Logo.svg" alt="Minecraft" class="logo">
+    </a>
+    <div class="menu-icon" id="menu-toggle">
+        <img width="32" height="32" src="https://img.icons8.com/windows/32/FFFFFF/menu-squared-2.png" alt="menu-icon"/>
+    </div>
+    <ul class="nav-menu" id="nav-menu">
+        <li><a href="./1_about.html">About</a></li>
+        <li><a href="./2_products.html">Our products</a></li>
+        <li><a href="./3_news.html">News</a></li>
+        <li><a href="./4_faq.html">FAQs</a></li>
+    </ul>
+</nav>
+    
+    <div class="container">
+        <div class="purchase-section">
+            <div class="game-showcase">
+                <img class="game-image" src="./assets/img/wallpaper_minecraft_pc_bundle_2058x1440.png" alt="Minecraft Java & Bedrock Edition">
+                <h1 class="game-title">Minecraft: Java & Bedrock</h1>
+                <div class="rating">
+                    <div class="stars">★ ★ ★ ★ ★</div>
+                    <span>(4.7) 842.8K</span>
+                    <span class="age-rating">Everyone 10+</span>
+                </div>
+            </div>
+            <div class="purchase-options">
+                <div class="edition">
+                    <div class="best-value">Best value!</div>
+                    <div class="edition-content">
+                        <h2 class="edition-title">Deluxe Collection</h2>
+                        <div class="edition-details">
+                            <div>Minecraft: Bedrock Edition &nbsp; Minecraft: Java Edition &nbsp; Minecraft Launcher</div>
+                            <div>1600 Minecoins &nbsp; 5 Maps &nbsp; 1 Texture Pack &nbsp; 5 Character Creator Items</div>
+                            <div>3 Emotes &nbsp; 3 Skin Packs &nbsp; Popcorn hat and butter shirt (for a limited time)</div>
+                        </div>
+                        <div class="edition-divider"></div>
+                        <div class="price-section">
+                            <div class="price-circle selected"></div>
+                            <div class="price">$39.99</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="edition">
+                    <div class="edition-content">
+                        <h2 class="edition-title">Standard Edition</h2>
+                        <div class="edition-details">
+                            <div>Minecraft: Bedrock Edition &nbsp; Minecraft: Java Edition &nbsp; Minecraft Launcher</div>
+                            <div>Popcorn hat and butter shirt (for a limited time)</div>
+                        </div>
+                        <div class="edition-divider"></div>
+                        <div class="price-section">
+                            <div class="price-circle"></div>
+                            <div class="price">$29.99</div>
+                            <div class="game-pass">GAME PASS</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button class="gift-btn">
+                        <span></span> BUY AS GIFT
+                    </button>
+                    <button class="checkout-btn">
+                        CHECKOUT <span class="arrow"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="other-platforms-title">Other Platforms</h2>
+        <div class="other-platforms-list">
+            <!-- Windows -->
+            <div class="other-platform">
+                <div class="platform-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Windows_icon_logo.png" alt="Windows logo">
+                </div>
+                <div class="platform-name">WINDOWS</div>
+            </div>
+            <!-- Steam -->
+            <div class="other-platform">
+                <div class="platform-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/512px-Steam_icon_logo.svg.png" alt="Steam logo">
+                </div>
+                <div class="platform-name">STEAM</div>
+            </div>
+            <!-- Nintendo -->
+            <div class="other-platform">
+                <div class="platform-logo">
+                    <img src="https://cdn-icons-png.flaticon.com/512/871/871377.png" alt="Nintendo logo">
+                </div>
+                <div class="platform-name">NINTENDO</div>
+            </div>
+            <!-- PlayStation -->
+            <div class="other-platform">
+                <div class="platform-logo">
+                    <img src="https://www.svgrepo.com/show/331538/playstation.svg" alt="PlayStation logo">
+                </div>
+                <div class="platform-name">PLAYSTATION</div>
+            </div>
+            <!-- Xbox -->
+            <div class="other-platform">
+                <div class="platform-logo">
+                    <img src="https://static.vecteezy.com/system/resources/previews/020/975/583/non_2x/xbox-logo-xbox-icon-transparent-free-png.png" alt="Xbox logo">
+                </div>
+                <div class="platform-name">XBOX</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // JS hiệu ứng cho nút chọn giá
+            const priceCircles = document.querySelectorAll('.price-circle');
+            priceCircles.forEach(circle => {
+                circle.addEventListener('click', function() {
+                    priceCircles.forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+        });
+    </script>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <h1>Contact Us</h1>
+        <div class="contact-grid">
+            <!-- Cột 1: Logo Mojang -->
+            <div class="contact-column">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Mojang_Studios_Logo_%282020%2C_slim%29.svg/2433px-Mojang_Studios_Logo_%282020%2C_slim%29.svg.png" alt="Mojang Studios Logo" class="mojang-logo">
+                <a href="https://www.minecraft.net/en-us/usage-guidelines" class="guidelines-link">Minecraft Usage Guidelines</a>
+            </div>
+            <!-- Cột 2: Logo Xbox -->
+            <div class="contact-column">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/Xbox_Game_Studios.svg" alt="Xbox Game Studios Logo" class="xbox-logo">
+            </div>
+
+            <!-- Cột 3: Mạng xã hội và liên kết -->
+            <div class="contact-column social-links">
+                <div class="link-group">
+                    <h3>Games</h3>
+                    <ul>
+                        <li><a href="#">Minecraft</a></li>
+                        <li><a href="#">Minecraft Dungeons</a></li>
+                        <li><a href="#">Minecraft Legends</a></li>
+                        <li><a href="#">Minecraft Education</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h3>Shop</h3>
+                    <ul>
+                        <li><a href="#">Marketplace</a></li>
+                        <li><a href="#">Minecraft Shop</a></li>
+                    </ul>
+                </div>
+                <!-- Biểu tượng mạng xã hội -->
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/minecraft"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"></a>
+                    <a href="https://twitter.com/Minecraft"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg" alt="Twitter"></a>
+                    <a href="https://www.instagram.com/minecraft"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"></a>
+                    <a href="https://www.youtube.com/minecraft"><img src="https://cdn.iconscout.com/icon/free/png-256/free-youtube-logo-icon-download-in-svg-png-gif-file-formats--social-media-70-flat-icons-color-pack-logos-432560.png" alt="YouTube"></a>
+                </div>
+            </div>
+
+            <!-- Cột 4: Tag ESRB -->
+            <div class="contact-column esrb">
+                <img src="./assets/img/ESRB.png" alt="ESRB Rating">
+            </div>
+        </div>
+    </section>
+</section>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Minecraft. All rights reserved.</p>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        
+        menuToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+        });
+    });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft News</title>
+    <link rel="stylesheet" href="./css/0_index.css">
+    <style>        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Minecraftia', 'Open Sans', sans-serif;
+            text-rendering: pixelated;
+            background-color: #1a1a1a;
+            color: white;
+            overflow-x: hidden;
+        }
+    .navbar ul li a:hover {
+        color:chartreuse
+        }
+
+    .navbar ul li a.active {
+        color: chartreuse; /* Keep the active link in chartreuse */
+        }
+    .page-content {
+        animation: slideInFromRight 0.8s ease-out forwards;
+        }
+        
+@keyframes slideInFromRight {
+            0% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+    /*Nội dung trang*/
+        .header {
+            background-color: #5bac34;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            position: relative;
+            margin-top: 100px; 
+        }
+        
+        .header h1 {
+            font-family: 'Minecraft', 'Minecraftia', monospace;
+            font-size: 48px;
+            letter-spacing: 2px;
+            margin: 0;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.3);
+        }
+        
+        .pixel-art {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            display: grid;
+            grid-template-columns: repeat(3, 40px);
+            grid-template-rows: repeat(3, 40px);
+        }
+        
+        .pixel {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .black {
+            background-color: #2d2d2d;
+        }
+        
+        .green {
+            background-color: #5bac34;
+        }
+        
+        .featured-section {
+            background-color: #2d2d2d;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        .featured-section h2 {
+            font-family: 'Minecraft', 'Minecraftia', monospace;
+            font-size: 36px;
+            letter-spacing: 2px;
+            margin: 0;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+        }
+        
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            overflow: hidden;
+        }
+        
+        .slider {
+            display: flex;
+            width: 500%;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .slide {
+            width: 20%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            background-color: #1a1a1a;
+            color: white;
+        }
+        
+        .slide-content {
+            width: 60%;
+            margin: 0 auto;
+            padding: 30px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: #e0e0e0;
+            color: #1a1a1a;
+        }
+        
+        .adidas-collection {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 30px 40px !important; /* Override to ensure consistent padding */
+        }
+        
+        .slide-side {
+            width: 20%;
+            background-color: #1a1a1a;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .slide-title {
+            font-family: 'Minecraft', 'Minecraftia', monospace;
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+        
+        .slide-description {
+            font-family: 'Minecraftia', 'Open Sans', sans-serif;
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+            line-height: 1.4;
+        }
+        
+        .slide-link {
+            font-family: 'Minecraftia', 'Open Sans', sans-serif;
+            display: inline-block;
+            font-size: 16px;
+            color: #5a822d;
+            text-decoration: none;
+            margin-top: 20px;
+            padding: 8px 12px 8px 0;
+            position: relative;
+        }
+        
+        .slide-link:after {
+            content: " ➔";
+            margin-left: 5px;
+        }
+        
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 2px solid #4a90e2;
+            color: white;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 10;
+        }
+        
+        .nav-prev {
+            left: 20px;
+        }
+        
+        .nav-next {
+            right: 20px;
+        }
+        
+        .side-content {
+            text-align: left;
+            width: 100%;
+        }
+        
+        .side-title {
+            font-family: 'Minecraft', 'Minecraftia', monospace;
+            font-size: 22px;
+            color: #ddca7e;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .adidas-image {
+            width: 60%;
+            max-height: 300px;
+            object-fit: contain;
+            margin: 0 auto 20px;
+            display: block;
+        }
+        
+        .minecraft-scene {
+            width: 100%;
+            height: auto;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        
+        .side-description {
+            font-family: 'Minecraftia', 'Open Sans', sans-serif;
+            font-size: 14px;
+            margin-top: 10px;
+            line-height: 1.4;
+        }
+        
+        .side-link {
+            font-family: 'Minecraftia', 'Open Sans', sans-serif;
+            display: inline-block;
+            color: #7b7b7b;
+            text-decoration: none;
+            margin-top: 20px;
+            font-size: 14px;
+            padding: 5px 0;
+        }
+        
+        .side-link:after {
+            content: " ➔";
+            margin-left: 3px;
+        }
+        
+        .center-image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+     <!-- Thanh điều hướng -->
+     <nav class="navbar">
+        <a href="./index.html">
+            <img src="./assets/img/MCCB Logo.svg" alt="Minecraft" class="logo">
+        </a>
+        <div class="menu-icon" id="menu-toggle">
+            <img width="32" height="32" src="https://img.icons8.com/windows/32/FFFFFF/menu-squared-2.png" alt="menu-icon"/>
+        </div>
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="./1_about.html">About</a></li>
+            <li><a href="./2_products.html">Our products</a></li>
+            <li><a href="./3_news.html" class="active">News</a></li>
+            <li><a href="./4_faq.html">FAQs</a></li>
+        </ul>
+    </nav>
+    <!--Phần tiêu đề-->
+    <div class="page-content">
+        <div class="header">
+            <h1>Minecraft News</h1>
+            <div class="pixel-art">
+                <div class="pixel black"></div>
+                <div class="pixel green"></div>
+                <div class="pixel black"></div>
+                <div class="pixel green"></div>
+                <div class="pixel black"></div>
+                <div class="pixel green"></div>
+                <div class="pixel black"></div>
+                <div class="pixel green"></div>
+                <div class="pixel black"></div>
+            </div>
+        </div>
+        
+        <div class="featured-section">
+            <h2>Featured</h2>
+        </div>
+        
+        <div class="slider-container">
+            <div class="slider">
+                <!-- Slide 1: Minecraft Live -->
+                <div class="slide">
+                    <div class="slide-side">
+                        <div class="side-content">
+                            <div class="side-title">Minecraft Live</div>
+                            <div class="side-description">Join our Spring Sale (no matter if you outside) starting on April 8 10am PT</div>
+                        </div>
+                    </div>
+                    <div class="slide-content">
+                        <!-- VỊ TRÍ CHÈN ẢNH 1-->
+                        <div class="center-image-container">
+                            <img src="./assets/img/mine live.png" alt="Minecraft Live" class="adidas-image">
+                        </div>
+                        <h2 class="slide-title">The Latest Minecraft Live: March 2025</h2>
+                        <p class="slide-description">Experience all the exciting announcements and reveals from the latest Minecraft Live event. From new biomes to gameplay mechanics, this event showcased the future of Minecraft.</p>
+                        <a href="https://www.windowscentral.com/gaming/minecraft/minecraft-live-march-2025-everything-announced?utm_source=chatgpt.com" class="slide-link">Learn more</a>
+                    </div>
+                    <div class="slide-side">
+                        <!-- VỊ TRÍ CHÈN ẢNH 2-->
+                        <img src="./assets/img/brandnewupdates.jpg" alt="Minecraft Live Scene" class="minecraft-scene">
+                    </div>
+                </div>
+                
+                <!-- Slide 2: Game Drop Announcements -->
+                <div class="slide">
+                    <div class="slide-side">
+                        <div class="side-content">
+                            <div class="side-title">Game Updates</div>
+                            <div class="side-description">Exciting new features coming to Minecraft in 2025</div>
+                        </div>
+                    </div>
+                    <div class="slide-content">
+                        <!-- VỊ TRÍ CHÈN ẢNH 3-->
+                        <div class="center-image-container">
+                            <img src="./assets/img/brandnewupdates.jpg" alt="Game Drop" class="adidas-image">
+                        </div>
+                        <h2 class="slide-title">Minecraft Live March 2025: Game Drop Announcements</h2>
+                        <p class="slide-description">Discover all the new game drops announced during Minecraft Live. New mobs, blocks, and adventures await as Minecraft continues to expand its universe.</p>
+                        <a href="https://www.windowscentral.com/gaming/minecraft/minecraft-live-march-2025-game-drop-announcements?utm_source=chatgpt.com" class="slide-link">Learn more</a>
+                    </div>
+                    <div class="slide-side">
+                        <!-- VỊ TRÍ CHÈN ẢNH 4-->
+                        <img src="./assets/img/spring to life.png" alt="Game Drops Scene" class="minecraft-scene">
+                    </div>
+                </div>
+                
+                <!-- Slide 3: New Update -->
+                <div class="slide">
+                    <div class="slide-side">
+                        <div class="side-content">
+                            <div class="side-title">New Feature</div>
+                            <div class="side-description">A game-changing update that players have been requesting</div>
+                        </div>
+                    </div>
+                    <div class="slide-content">
+                        <!-- VỊ TRÍ CHÈN ẢNH 5-->
+                        <div class="center-image-container">
+                            <img src="./assets/img/spring to life.png" alt="New Update" class="adidas-image">
+                        </div>
+                        <h2 class="slide-title">Minecraft Releases Brand New Update</h2>
+                        <p class="slide-description">Minecraft has finally released a highly requested feature that could be a game-changer. This update brings new possibilities to how players interact with the world and each other.</p>
+                        <a href="https://timesofindia.indiatimes.com/sports/esports/minecraft/minecraft-releases-a-brand-new-update-with-a-highly-requested-feature-could-this-be-a-game-changer/articleshow/119611252.cms" class="slide-link">Learn more</a>
+                    </div>
+                    <div class="slide-side">
+                        <!-- VỊ TRÍ CHÈN ẢNH 6-->
+                        <img src="./assets/img/therapist.png" alt="New Update Scene" class="minecraft-scene">
+                    </div>
+                </div>
+                
+                <!-- Slide 4: Therapeutic Benefits -->
+                <div class="slide">
+                    <div class="slide-side">
+                        <div class="side-content">
+                            <div class="side-title">Therapy</div>
+                            <div class="side-description">How Minecraft is helping children through therapy</div>
+                        </div>
+                    </div>
+                    <div class="slide-content">
+                        <!-- VỊ TRÍ CHÈN ẢNH 7-->
+                        <div class="center-image-container">
+                            <img src="./assets/img/therapist.png" alt="Minecraft Therapy" class="adidas-image">
+                        </div>
+                        <h2 class="slide-title">How Minecraft Is Transforming Children's Therapy</h2>
+                        <p class="slide-description">Discover how Minecraft is being used as a therapeutic tool for children. The game's creative environment provides a unique platform for therapeutic interventions and emotional expression.</p>
+                        <a href="https://www.wellpower.org/blog/how-minecraft-is-transforming-childrens-therapy-at-wellpower/" class="slide-link">Learn more</a>
+                    </div>
+                    <div class="slide-side">
+                        <!-- VỊ TRÍ CHÈN ẢNH 8-->
+                        <img src="./assets/img/minexadidas.png" alt="Therapy Scene" class="minecraft-scene">
+                    </div>
+                </div>
+                
+                <!-- Slide 5: Adidas Collection -->
+                <div class="slide">
+                    <div class="slide-side">
+                        <div class="side-content">
+                            <div class="side-title">Spring Sale</div>
+                            <div class="side-description">Join our Spring Sale starting on April 8 10am PT</div>
+                        </div>
+                    </div>
+                    <div class="slide-content adidas-collection">
+                        <!-- VỊ TRÍ CHÈN ẢNH 9-->
+                        <div class="center-image-container">
+                            <img src="./assets/img/minexadidas.png" alt="Adidas x Minecraft" class="adidas-image">
+                        </div>
+                        <h2 class="slide-title">adidas Originals x A Minecraft Movie</h2>
+                        <p class="slide-description">Bring the creativity and excitement of A Minecraft Movie to your closet with the adidas Originals x A Minecraft Movie collection, inspired by iconic characters and scenes.</p>
+                        <a href="https://www.rollingstone.com/product-recommendations/lifestyle/adidas-minecraft-collection-1235312181/" class="slide-link">Learn more</a>
+                    </div>
+                    <div class="slide-side">
+                        <div class="side-content">
+                            <div class="side-title">Wake up with Soothing</div>
+                            <div class="side-description">Feel the warm breeze awakening the Soothing Scenes.</div>
+                            <a href="#" class="side-link">Tap to unwind</a>
+                        </div>
+                        <!-- VỊ TRÍ CHÈN ẢNH 10-->
+                        <img src="./assets/img/mine live.png" alt="Soothing Scene" class="minecraft-scene">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nav-button nav-prev">←</div>
+            <div class="nav-button nav-next">→</div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <h1>Contact Us</h1>
+        <div class="contact-grid">
+            <!-- Cột 1: Logo Mojang -->
+            <div class="contact-column">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Mojang_Studios_Logo_%282020%2C_slim%29.svg/2433px-Mojang_Studios_Logo_%282020%2C_slim%29.svg.png" alt="Mojang Studios Logo" class="mojang-logo">
+                <a href="https://www.minecraft.net/en-us/usage-guidelines" class="guidelines-link">Minecraft Usage Guidelines</a>
+            </div>
+            <!-- Cột 2: Logo Xbox -->
+            <div class="contact-column">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/Xbox_Game_Studios.svg" alt="Xbox Game Studios Logo" class="xbox-logo">
+            </div>
+
+            <!-- Cột 3: Mạng xã hội và liên kết -->
+            <div class="contact-column social-links">
+                <div class="link-group">
+                    <h3>Games</h3>
+                    <ul>
+                        <li><a href="#">Minecraft</a></li>
+                        <li><a href="#">Minecraft Dungeons</a></li>
+                        <li><a href="#">Minecraft Legends</a></li>
+                        <li><a href="#">Minecraft Education</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h3>Shop</h3>
+                    <ul>
+                        <li><a href="#">Marketplace</a></li>
+                        <li><a href="#">Minecraft Shop</a></li>
+                    </ul>
+                </div>
+                <!-- Biểu tượng mạng xã hội -->
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/minecraft"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"></a>
+                    <a href="https://twitter.com/Minecraft"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg" alt="Twitter"></a>
+                    <a href="https://www.instagram.com/minecraft"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"></a>
+                    <a href="https://www.youtube.com/minecraft"><img src="https://cdn.iconscout.com/icon/free/png-256/free-youtube-logo-icon-download-in-svg-png-gif-file-formats--social-media-70-flat-icons-color-pack-logos-432560.png" alt="YouTube"></a>
+                </div>
+            </div>
+
+            <!-- Cột 4: Tag ESRB -->
+            <div class="contact-column esrb">
+                <img src="./assets/img/ESRB.png" alt="ESRB Rating">
+            </div>
+        </div>
+    </section>
+</section>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Minecraft. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const slider = document.querySelector('.slider');
+        const prevBtn = document.querySelector('.nav-prev');
+        const nextBtn = document.querySelector('.nav-next');
+        let slideIndex = 0;
+        const slideCount = document.querySelectorAll('.slide').length;
+        
+        function showSlide(index) {
+            if (index < 0) {
+                slideIndex = slideCount - 1;
+            } else if (index >= slideCount) {
+                slideIndex = 0;
+            }
+            slider.style.transform = `translateX(-${slideIndex * 20}%)`;
+        }
+        
+        prevBtn.addEventListener('click', () => {
+            slideIndex--;
+            showSlide(slideIndex);
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            slideIndex++;
+            showSlide(slideIndex);
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Select the menu toggle button and navigation menu
+            const menuToggle = document.getElementById('menu-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            
+            // Add click event to toggle the menu
+            menuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+            
+            // Close menu when clicking on a menu item
+            const menuItems = document.querySelectorAll('.nav-menu a');
+            menuItems.forEach(function(item) {
+                item.addEventListener('click', function() {
+                    // Only close the menu if we're in mobile view
+                    if (window.getComputedStyle(menuToggle).display !== 'none') {
+                        navMenu.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

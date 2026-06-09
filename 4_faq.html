@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft FAQ</title>
+    <link rel="stylesheet" href="./css/0_index.css">                            
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Header Section with pseudo-layer */
+        .header {
+            position: relative;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80%;
+            background-image: url('https://www.pcgamesn.com/wp-content/sites/pcgamesn/2022/01/minecraft-multiplayer-alex-and-steve.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.35;
+            z-index: -1;
+        }
+
+
+        .header-content {
+            position: relative;
+            z-index: 3;
+        }
+
+        .header, h1 {
+            font-family: 'Minecraft', sans-serif;
+            margin: 0;  
+            padding: 0;
+            font-weight: bold;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            font-family: Minecraftia, sans-serif;
+        }
+
+        h2 {
+            font-family: Minecraftia, sans-serif;
+        }
+
+        /* Main section with grid layout */
+        .main-container {
+            position: relative;
+            padding: 20px;
+            background-color: white;
+        }
+
+        .grid-container {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .grid-item {
+            background-color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .grid-item h2 {
+            font-size: 24px;
+            margin: 15px 0;
+        }
+
+        .grid-item p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #f2f2f2;
+            color: #333;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #ddd;
+        }
+
+        /* Title Section */
+        .title { 
+            text-align: center;
+            background-color: #333;
+            overflow: hidden;
+            padding: 50px 16px;
+            color: #f4f4f4;
+            width: 100%;
+        }
+
+        /* FAQ Section with 2-column grid */
+        .faq-section {
+            padding: 50px 20px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .faq-section h1 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            text-align: center;
+            color: white;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            text-align: left;
+            padding: 20px;
+        }
+
+        .faq-item h3 {
+            font-size: 1.5em;
+            color: #ffdd2b;
+            margin-bottom: 10px;
+        }
+
+        .faq-item p {
+            font-size: 1.1em;
+            color: white;
+            line-height: 1.6;
+        }
+
+        .faq-item a {
+            color: #1A1A1A;
+            text-decoration: none;
+        }
+
+        .faq-item a:hover {
+            text-decoration: underline;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .image-container img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        .contact-section {
+            padding: 50px 20px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .contact-section p {
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        .navbar ul li a.active {
+            color: chartreuse;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+.faq-all {
+        animation: slideInFromRight 0.8s ease-out forwards;
+        }
+        
+@keyframes slideInFromRight {
+            0% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>    
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="./index.html">
+            <img src="./assets/img/MCCB Logo.svg" alt="Minecraft" class="logo">
+        </a>
+        <div class="menu-icon" id="menu-toggle">
+            <img width="32" height="32" src="https://img.icons8.com/windows/32/FFFFFF/menu-squared-2.png" alt="menu-icon"/>
+        </div>
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="./1_about.html">About</a></li>
+            <li><a href="./2_products.html">Our products</a></li>
+            <li><a href="./3_news.html">News</a></li>
+            <li><a href="./4_faq.html" class="active">FAQs</a></li>
+        </ul>
+    </nav>
+
+<div class="faq-all">
+    <div class="header">
+        <div class="header-content">
+            <h1>MINECRAFT FAQ</h1>
+            <p>Find answers to your questions about Minecraft and the community!</p>
+        </div>
+    </div>
+
+    <div class="title">
+        <div class="pixel-corner"></div>
+        <h1>HOW TO PLAY MINECRAFT</h1>
+    </div>
+
+    <!-- Main Section with 3-column grid -->
+    <div class="main-container">
+        <div class="main-overlay"></div>
+        <div class="grid-container">
+            <div class="grid-item">
+                <img src="./assets/img/MCV_FallDrop_NetDownloadableWallpaper_2048x2048.png" alt="Getting Started">
+                <h2>Getting Started</h2>
+                <p>Everything you need to know before you start playing Minecraft.</p>
+                <a href="#" class="button">START NOW</a>
+            </div>
+            <div class="grid-item">
+                <img src="./assets/img/wallpaper_minecraft_buzzybees_2048x2048.png" alt="For Beginners">
+                <h2>For Beginners</h2>
+                <p>Nifty tips and tricks for surviving in the Overworld and beyond.</p>
+                <a href="#" class="button">EXPLORE TIPS</a>
+            </div>
+            <div class="grid-item">
+                <img src="./assets/img/wallpaper_minecraft_village_pillage_2048x2048.png" alt="Level Up">
+                <h2>Level Up!</h2>
+                <p>For players looking to take their experience to the next dimension.</p>
+                <a href="#" class="button">LEARN MORE</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section with 2-column grid -->
+    <div class="faq-section">
+        <h1>FREQUENTLY ASKED QUESTIONS</h1>
+        
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h3>What type of game is Minecraft?</h3>
+                <p>Minecraft is an open-world sandbox video game. As a sandbox video game, the possibilities are endless! You can focus on being creative and using blocks to build things, or explore and try to survive the night.</p>
+            </div>
+
+            <div class="faq-item"> 
+                <h3>Does Minecraft have a free trial?</h3>
+                <p>You can try a free Minecraft trial on Windows, Android, PlayStation 4, PlayStation 3, and Vita. Your trial length will vary depending on the device you use.</p>
+            </div>
+        
+            <div class="faq-item">
+                <h3>What devices can you play Minecraft on?</h3>
+                <p>You can play Minecraft on devices with Windows 10 and 11, Xbox One, Xbox Series S and X, PlayStation 4 and 5, Nintendo Switch, Android, iOS, and Windows Mobile.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>What age is Minecraft for?</h3>
+                <p>Minecraft has an ESRB rating of Everyone 10+.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Is Minecraft a multiplayer game?</h3>
+                <p>You can play Minecraft single-player or multiplayer. To play multiplayer, you'll need an online Minecraft server, or you can play multiplayer on an LAN (Local Area Network) server.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Is Minecraft a cross-platform game?</h3>
+                <p>Yes, Minecraft is a cross-platform game, meaning you can play Minecraft with your friends even if they have a different gaming device.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>How can I stay up-to-date with the latest Minecraft news and updates?</h3>
+                <p>You can stay up-to-date on the latest Minecraft news here.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>What should you do in the beginning of Minecraft?</h3>
+                <p>You can start Minecraft by crafting simple objects. Check out our article How to Survive Your First Day to get tips on what to do in the beginning of Minecraft.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Is there a guide for Minecraft?</h3>
+                <p>View our Minecraft guide here.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>What is the goal of Minecraft?</h3>
+                <p>Since Minecraft is a sandbox game, there isn't one specific goal of the game, but that's what makes it exciting! In Minecraft, you can build, explore, or focus on survival.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Section -->
+<section class="contact">
+    <h1>Contact Us</h1>
+    <div class="contact-grid">
+        <!-- Cột 1: Logo Mojang -->
+        <div class="contact-column">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Mojang_Studios_Logo_%282020%2C_slim%29.svg/2433px-Mojang_Studios_Logo_%282020%2C_slim%29.svg.png" alt="Mojang Studios Logo" class="mojang-logo">
+            <a href="https://www.minecraft.net/en-us/usage-guidelines" class="guidelines-link">Minecraft Usage Guidelines</a>
+        </div>
+        <!-- Cột 2: Logo Xbox -->
+        <div class="contact-column">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/Xbox_Game_Studios.svg" alt="Xbox Game Studios Logo" class="xbox-logo">
+        </div>
+
+        <!-- Cột 3: Mạng xã hội và liên kết -->
+        <div class="contact-column social-links">
+            <div class="link-group">
+                <h3>Games</h3>
+                <ul>
+                    <li><a href="#">Minecraft</a></li>
+                    <li><a href="#">Minecraft Dungeons</a></li>
+                    <li><a href="#">Minecraft Legends</a></li>
+                    <li><a href="#">Minecraft Education</a></li>
+                </ul>
+            </div>
+            <div class="link-group">
+                <h3>Shop</h3>
+                <ul>
+                    <li><a href="#">Marketplace</a></li>
+                    <li><a href="#">Minecraft Shop</a></li>
+                </ul>
+            </div>
+            <!-- Biểu tượng mạng xã hội -->
+            <div class="social-icons">
+                <a href="https://www.facebook.com/minecraft"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"></a>
+                <a href="https://twitter.com/Minecraft"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg" alt="Twitter"></a>
+                <a href="https://www.instagram.com/minecraft"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"></a>
+                <a href="https://www.youtube.com/minecraft"><img src="https://cdn.iconscout.com/icon/free/png-256/free-youtube-logo-icon-download-in-svg-png-gif-file-formats--social-media-70-flat-icons-color-pack-logos-432560.png" alt="YouTube"></a>
+            </div>
+        </div>
+
+        <!-- Cột 4: Tag ESRB -->
+        <div class="contact-column esrb">
+            <img src="./assets/img/ESRB.png" alt="ESRB Rating">
+        </div>
+    </div>
+</section>
+</section>
+<!-- Footer -->
+<footer>
+    <p>&copy; 2023 Minecraft. All rights reserved.</p>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    
+    menuToggle.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+    });
+});
+</script>
+
+</body>
+</html>
